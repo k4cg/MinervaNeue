@@ -1,3 +1,26 @@
+## REMARKS ##
+
+quick and dirty hack for the MediaWiki extension MobileFrontend to show the sidebar links in mobile view
+
+no coding conventions followed .. as stated this was done **quick** and **dirty**.
+
+tested with MediaWiki 1.31.1 and the following settings in `LocalSettings.php`
+```php
+wfLoadSkin( 'MinervaNeue' );
+
+wfLoadExtension( 'MobileFrontend' );
+$wgMFAutodetectMobileView = true;
+$wgMFDefaultSkinClass = 'SkinMinerva';
+
+```
+
+
+
+
+--
+
+
+
 MinervaNeue skin
 ========================
 
