@@ -290,12 +290,8 @@ class MinervaTemplate extends BaseTemplate {
 		$json = json_decode(file_get_contents('http://k4cgrouter.duckdns.org:59468/status.json', true));
 		// workaround as $doorStatus = $json['hservierer']['door']; would not work/freeze
 		foreach($json as $key=>$value) {
-			if($key == 'hservierer') {
-				foreach($value as $seviererKey=>$serviererValue) {
-					if($seviererKey == 'door') {
-						$doorStatus = $serviererValue;
-					}
-				}
+			if($key == 'door') {
+				$doorStatus = $value;
 			}
 		}
 
