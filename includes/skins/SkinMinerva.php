@@ -635,26 +635,18 @@ class SkinMinerva extends SkinTemplate implements ICustomizableSkin {
 		$config = $this->getConfig();
 		$menu = new MenuBuilder();
 
-		// Home link
-		$menu->insert( 'home' )
-			->addComponent(
-				$this->msg( 'mobile-frontend-home-button' )->escaped(),
-				Title::newMainPage()->getLocalUrl(),
-				MinervaUI::iconClass( 'home', 'before' ),
-				[ 'data-event-name' => 'home' ]
-			);
+		$sidebarArray = $this->buildSidebar();
 
-		// Random link
-		$menu->insert( 'random' )
-			->addComponent(
-				$this->msg( 'mobile-frontend-random-button' )->escaped(),
-				SpecialPage::getTitleFor( 'Randompage' )->getLocalUrl() . '#/random',
-				MinervaUI::iconClass( 'random', 'before' ),
-				[
-					'id' => 'randomButton',
-					'data-event-name' => 'random',
-				]
-			);
+		foreach($sidebarArray as $key=>$value) {
+			foreach($value as $sidebarElement){
+				$menu->insert($sidebarElement['id'])
+					->addComponent(
+						$sidebarElement['text'],
+						$sidebarElement['href'],
+						MinervaUI::iconClass( 'page', 'before' )
+				);
+			}
+		}
 
 		// Nearby link (if supported)
 		if (
