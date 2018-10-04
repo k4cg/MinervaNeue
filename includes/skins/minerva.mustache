@@ -16,11 +16,13 @@
 						<span>{{{headinghtml}}}</span>
 						<sup>&beta;</sup>
 					</h1>
+                    <span class="doorStatus doorStatus-m doorStatus-{{doorStatus}}"><span class="doorStatusPrefix">sorry we are </span>{{doorStatus}}</span>
 				</div>
 				<div class="search-box">
 					<input class="search skin-minerva-search-trigger" type="search" name="search" id="searchInput"
 					   autocomplete="off" placeholder="{{placeholder}}"
 					   value="{{search}}">
+                    <span class="doorStatus doorStatus-xl doorStatus-{{doorStatus}}"><span class="doorStatusPrefix">sorry we are </span>{{doorStatus}}</span>
 				</div>
 				<div>{{{searchButton}}}</div>
 				{{^isAnon}}<div>{{#secondaryButtonData}}{{>secondaryButton}}{{/secondaryButtonData}}</div>{{/isAnon}}

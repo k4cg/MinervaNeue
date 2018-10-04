@@ -83,3 +83,62 @@ textarea {
 #mw-mf-page-center {
 	background-color: @chromeColor;
 }
+
+.doorStatus {
+        position:absolute;
+        background-color:rgba(245, 54, 54, 0.9);
+        color:#fff;
+        padding:15px;
+        right:0;
+        top:0;
+}
+
+.doorStatus-open {
+        background-color:rgba(46, 200, 40, 0.97);
+}
+
+.searchButton, .doorStatus-xl, .doorStatus-m {
+        display:none!important;
+        visibility:hidden!important;
+}
+
+@media only screen and (max-width: 850px)  {
+        .doorStatus-xl .doorStatusPrefix {
+                display:none!important;
+                visibility:hidden!important;
+        }
+}
+
+@media only screen and (min-width: 720px)  {
+        .doorStatus-xl {
+                display:block!important;
+                visibility:visible!important;
+        }
+}
+
+@media only screen and (max-width: 719px)  {
+        .searchButton {
+                display:table-cell!important;
+                visibility:visible!important;
+        }
+        .doorStatus-m {
+                display:block!important;
+                visibility:visible!important;
+        }
+}
+
+@media only screen and (max-width: 370px)  {
+        .doorStatus-m .doorStatusPrefix {
+                display:none!important;
+                visibility:hidden!important;
+        }
+}
+
+@media only screen and (max-width: 280px) {
+        .doorStatus {
+                padding:12px;
+        }
+}
+
+
+
