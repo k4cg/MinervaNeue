@@ -16,13 +16,53 @@
 						<span>{{{headinghtml}}}</span>
 						<sup>&beta;</sup>
 					</h1>
-                    <span class="doorStatus doorStatus-m doorStatus-{{doorStatus}}"><span class="doorStatusPrefix">sorry we are </span>{{doorStatus}}</span>
-				</div>
+
+<span class="doorStatus doorStatus-m"></span>
+
 				<div class="search-box">
 					<input class="search skin-minerva-search-trigger" type="search" name="search" id="searchInput"
 					   autocomplete="off" placeholder="{{placeholder}}"
 					   value="{{search}}">
-                    <span class="doorStatus doorStatus-xl doorStatus-{{doorStatus}}"><span class="doorStatusPrefix">sorry we are </span>{{doorStatus}}</span>
+
+<span class="doorStatus doorStatus-xl"></span>
+
+
+<script>
+  var xhttp = new XMLHttpRequest();
+  xhttp.timeout = 2000;
+  xhttp.onreadystatechange = function() {
+    let status = "ungewiss";
+    if (this.readyState == 4 && this.status == 200) {
+      let stats = JSON.parse(this.responseText);
+      if(stats.door == "open") {
+        status = "open";
+      } else if (stats.door === "closed") {
+	status = "closed";
+      }
+
+    }
+    if (this.readyState == 4) {
+
+      let outers = document.getElementsByClassName("doorStatus");
+      console.log(outers);
+      var i = 0;
+      for(i = 0; i < outers.length; i++){
+         console.log(i);
+         outers[i].classList.add("doorStatus-" + status);
+         outers[i].innerHTML = '<span class="doorStatusPrefix">we are </span><span class="doorStatusText"></span>' + status;
+      };
+    };
+
+
+  }
+  xhttp.open("GET", "https://status.k4cg.org/status.json", true);
+  xhttp.send();
+</script>
+
+
+
+
+
 				</div>
 				<div>{{{searchButton}}}</div>
 				{{^isAnon}}<div>{{#secondaryButtonData}}{{>secondaryButton}}{{/secondaryButtonData}}</div>{{/isAnon}}

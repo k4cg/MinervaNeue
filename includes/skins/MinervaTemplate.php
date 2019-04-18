@@ -285,16 +285,6 @@ class MinervaTemplate extends BaseTemplate {
 	protected function render( $data ) {
 		$templateParser = new TemplateParser( __DIR__ );
 
-		$doorStatus = 'closed';
-		// get door status
-		$json = json_decode(file_get_contents('http://k4cgrouter.duckdns.org:59468/status.json', true));
-		// workaround as $doorStatus = $json['hservierer']['door']; would not work/freeze
-		foreach($json as $key=>$value) {
-			if($key == 'door') {
-				$doorStatus = $value;
-			}
-		}
-
 		// prepare template data
 		$templateData = [
 			'banners' => $data['banners'],
@@ -318,7 +308,6 @@ class MinervaTemplate extends BaseTemplate {
 			'mainmenuhtml' => $this->getMainMenuHtml( $data ),
 			'contenthtml' => $this->getContentWrapperHtml( $data ),
 			'footer' => $this->getFooterTemplateData( $data ),
-			'doorStatus' => $doorStatus,
 		];
 		// begin rendering
 		echo $templateParser->processTemplate( 'minerva', $templateData );
